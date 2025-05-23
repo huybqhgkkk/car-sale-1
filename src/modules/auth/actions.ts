@@ -1,0 +1,38 @@
+"use server"
+
+import { redirect } from "next/navigation"
+
+type NavigationState = {
+  message: string
+  error?: string
+}
+
+export async function navigateToHome(
+  prevState: NavigationState,
+  formData: FormData
+): Promise<NavigationState> {
+  try {
+    redirect("/vn")
+    return { message: "Redirecting to home..." }
+  } catch (error) {
+    return {
+      message: "Navigation failed",
+      error: "Could not redirect to home page",
+    }
+  }
+}
+
+export async function navigateToContact(
+  prevState: NavigationState,
+  formData: FormData
+): Promise<NavigationState> {
+  try {
+    redirect("/contact")
+    return { message: "Redirecting to contact..." }
+  } catch (error) {
+    return {
+      message: "Navigation failed",
+      error: "Could not redirect to contact page",
+    }
+  }
+}
